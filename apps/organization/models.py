@@ -15,7 +15,7 @@ TAG_CHOICES = (
 class City(models.Model):
     name = models.CharField(max_length=32, verbose_name='城市')
     desc = models.CharField(max_length=64, verbose_name='城市描述')
-    add_time = models.DateTimeField(auto_now_add=True)
+    add_time = models.DateTimeField(auto_now_add=True, verbose_name='添加时间')
 
     class Meta:
         verbose_name = '城市'
@@ -46,7 +46,7 @@ class School(models.Model):
     fav_nums = models.IntegerField(default=0, verbose_name='收藏人数')
     image = models.ImageField(upload_to='org/%Y/%m', max_length=128, verbose_name='logo')
     tag = models.CharField(max_length=32, choices=TAG_CHOICES, verbose_name='标签')
-    add_time = models.DateTimeField(auto_now_add=True)
+    add_time = models.DateTimeField(auto_now_add=True, verbose_name='添加时间')
 
     class Meta:
         verbose_name = '学校'
@@ -67,7 +67,7 @@ class Teacher(models.Model):
     click_nums = models.IntegerField(default=0, verbose_name='点击量')
     fav_nums = models.IntegerField(default=0, verbose_name='收藏人数')
     image = models.ImageField(upload_to='org/%Y/%m', max_length=128, verbose_name='logo')
-    add_time = models.DateTimeField(auto_now_add=True)
+    add_time = models.DateTimeField(auto_now_add=True, verbose_name='添加时间')
 
     class Meta:
         verbose_name = '教师'
