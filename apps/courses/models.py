@@ -31,11 +31,11 @@ class Course(models.Model):
     study_time = models.IntegerField(default=0, verbose_name='学习时长')
     students = models.IntegerField(default=0, verbose_name='学习人数')
     fav_nums = models.IntegerField(default=0, verbose_name='收藏人数')
-    image = models.ImageField(upload_to='course/%Y/%m', max_length=128, verbose_name='封面图')
+    image = models.ImageField(upload_to='static/img/course/%Y/%m', max_length=128, verbose_name='封面图')
     click_nums = models.IntegerField(default=0, verbose_name='点击量')
     category = models.ForeignKey(Category, related_name='courses', on_delete=models.CASCADE)
     tag = models.CharField(max_length=64, default='', verbose_name='课程标签')
-    add_time = models.DateTimeField(auto_now_add=True)
+    add_time = models.DateTimeField(auto_now_add=True, verbose_name='添加时间')
 
     class Meta:
         verbose_name = '课程'
@@ -49,7 +49,7 @@ class Chapter(models.Model):
     course = models.ForeignKey(Course, related_name='chapters', verbose_name='课程')
     name = models.CharField(max_length=128, verbose_name='章节')
     study_time = models.IntegerField(default=0, verbose_name='学习时长')
-    add_time = models.DateTimeField(auto_now_add=True)
+    add_time = models.DateTimeField(auto_now_add=True, verbose_name='添加时间')
 
     class Meta:
         verbose_name = '课程章节'
@@ -63,7 +63,7 @@ class Video(models.Model):
     chapter = models.ForeignKey(Chapter, related_name='video', verbose_name='章节')
     name = models.CharField(max_length=128, verbose_name='视频')
     study_time = models.IntegerField(default=0, verbose_name='学习时长')
-    add_time = models.DateTimeField(auto_now_add=True)
+    add_time = models.DateTimeField(auto_now_add=True, verbose_name='添加时间')
 
     class Meta:
         verbose_name = '课程视频'
@@ -77,7 +77,7 @@ class CourseResource(models.Model):
     course = models.ForeignKey(Course, related_name='resources', verbose_name='课程')
     name = models.CharField(max_length=128, verbose_name='资源名称')
     download = models.FileField(max_length=128, upload_to='course/resource/%Y/%m', verbose_name='资源文件')
-    add_time = models.DateTimeField(auto_now_add=True)
+    add_time = models.DateTimeField(auto_now_add=True, verbose_name='添加时间')
 
     class Meta:
         verbose_name = '课程资源'
